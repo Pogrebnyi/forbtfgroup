@@ -1,0 +1,40 @@
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title color="primary" size="large" style="text-align: center; vertical-align:text-top;">
+        Users' Posts
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div style="text-align: center; padding: 2%; font-weight: bold;">Please select a user to find their posts:</div>
+  <ion-grid>
+    <ion-row wrap>
+      <ion-col sizeLg="3" sizeMd="4" sizeXs="6" *ngFor="let user of users">
+        <ion-button
+          [style]="isClick === user.id ? '--background:red' : '--background:blue'"
+          expand="full"
+          (click)="getPosts(user.id)"
+        > {{ user.name }} </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <container-element [ngSwitch]="posts">
+    <ng-container>
+      <ion-list *ngSwitchCase="!isFullListShown && posts">
+        <app-post *ngFor="let post of posts | slice:0:3; let i=index" [post]="post"></app-post>
+      </ion-list>
+      <ion-button style="float:right; padding: 2%;" *ngIf="!isFullListShown && posts" (click)="isFullListShown = true" end>Load All</ion-button>
+    </ng-container>
+
+    <ion-list *ngSwitchDefault>
+      <app-post *ngFor="let post of posts" [post]="post"></app-post>
+    </ion-list>
+ </container-element>
+
+</ion-content>

@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="getBackButtonText()" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="comments">
+  <ion-list *ngFor="let comment of comments">
+    <ion-item>
+      <ion-icon name="person-circle" color="primary"></ion-icon>
+      <ion-label class="ion-text-wrap">
+        <h2>
+          {{ comment.email }}
+          <span class="date">
+            <ion-note>{{ post.date }}</ion-note>
+          </span>
+        </h2>
+        <h3>To: <ion-note>Me</ion-note></h3>
+      </ion-label>
+    </ion-item>
+
+    <div class="ion-padding">
+      <h1>{{ comment.name }}</h1>
+      <p>
+        {{ comment.body }}
+      </p>
+    </div>
+  </ion-list>
+</ion-content>

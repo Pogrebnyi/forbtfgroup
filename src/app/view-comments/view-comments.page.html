@@ -13,8 +13,8 @@
       <ion-label class="ion-text-wrap">
         <h2>
           {{ comment.email }}
-          <span class="date">
-            <ion-note>{{ post.date }}</ion-note>
+          <span class="date" [hidden]="!comments">
+            <ion-note>{{ time }}</ion-note>
           </span>
         </h2>
         <h3>To: <ion-note>Me</ion-note></h3>
